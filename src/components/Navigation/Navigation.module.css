@@ -1,0 +1,14 @@
+.header {
+border-bottom: 1px solid #ececec;
+padding: 20px;
+}
+
+.link {
+    padding: 10px;
+    color: black;
+}
+
+.active {
+  composes: link;
+  color: red;
+}
