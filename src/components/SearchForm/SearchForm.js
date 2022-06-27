@@ -1,8 +1,10 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ImSearch } from 'react-icons/im';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import s from './SearchForm.module.css';
+
 
 function SearchForm({ onSubmit }) {
     const [searchQuery, setSearchQuery] = useState('');
@@ -24,29 +26,27 @@ function SearchForm({ onSubmit }) {
 
       return (
      
-        <form onSubmit={handleSubmit} >
-          <button type="submit" >
-            <ImSearch />
-
-      <span>Search</span>
-    </button>
-
-            <input
+        <form className={s.form} onSubmit={handleSubmit} >
+      
+          <input
+            className={s.input}
       onChange={handleChange}
       value={searchQuery}
       type="text"
       autoComplete="off"
       autoFocus
       placeholder="Search"
-    />
+          />
+              <button className={s.btn} type="submit" >
+           <span className={s.icon}> <ImSearch /></span>
+      <span className={s.textBtn}>Search</span>
+    </button>
   </form>
-
     )
-
 }
 
-// SearchForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// }
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+}
 
 export default SearchForm;

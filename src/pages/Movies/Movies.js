@@ -5,6 +5,8 @@ import { getSearchMovies } from '../../services/api';
 import { ThreeDots } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import s from './Movies.module.css';
+
 
 function Movies() {
     const [movies, setMovies] = useState([]);
@@ -41,9 +43,11 @@ function Movies() {
         <>
             <SearchForm onSubmit={handleSubmit} />
             {loading && <ThreeDots color="#00BFFF" height={80} width={80} />}
-            {movies && <ul>
-                {movies.map(({ id, title }) => <li key={id}>
-                    <Link to={`/movies/${id}`} state={{from: location}}>{title}</Link>
+            {movies && <ul className={s.list}>
+                {movies.map(({ id, title, poster_path }) => <li className={s.item} key={id}>
+                    <Link to={`/movies/${id}`} state={{ from: location }}>
+                        <img className={s.img} src={`https://image.tmdb.org/t/p/w300${poster_path}`} alt={title}></img>
+                        <p className={s.text}>{title}</p></Link>
                 </li>)}
             </ul> }
         </>
